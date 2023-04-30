@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 import { config } from 'dotenv'
 import express, { json } from 'express'
 import { connect } from 'mongoose'
@@ -16,6 +17,7 @@ const app = express()
 
 app.use(json())
 app.use(bodyParser.json())
+app.use(cookieParser())
 app.use('/admin', adminRouter)
 app.use('/auth', authRouter)
 app.use(serverExceptionMiddleware)
