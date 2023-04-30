@@ -14,5 +14,9 @@ authRouter.post(
 	(req: Request, res: Response, next: NextFunction) =>
 		authController.login(req, res, next)
 )
+authRouter.get('/logout',
+	(req: Request, res: Response) =>
+		authController.logout(req, res)
+)
 
 export default authRouter
