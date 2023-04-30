@@ -1,13 +1,21 @@
 import { config } from 'dotenv'
-import express from 'express'
+import express, { json } from 'express'
 import { connect } from 'mongoose'
 import { join } from 'path'
+import bodyParser from 'body-parser'
+import authRouter from './auth/auth.router'
+import { serverExceptionMiddleware } from './exception/server-exception.middleware'
 
 config({
 	path: join(__dirname, '..', '.env')
 })
 
 const app = express()
+
+app.use(json())
+app.use(bodyParser.json())
+app.use('/auth', authRouter)
+app.use(serverExceptionMiddleware)
 
 const start = async () => {
 	const port = Number(process.env.PORT) || 8000
