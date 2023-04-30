@@ -51,7 +51,7 @@ export class AuthService {
 			throw new BadRequest('username or email required')
 		}
 
-		const authParams = email ? {email} : {username}
+		const authParams = email ? { email } : { username }
 
 		const user = await userModel.findOne(authParams)
 
