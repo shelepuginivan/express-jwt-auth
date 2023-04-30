@@ -7,7 +7,7 @@ export class AdminController {
 
 	async allUsers(req: Request, res: Response, next: NextFunction) {
 		try {
-			const jwt = req.headers.authorization?.split(' ')[1]
+			const { jwt } = req.cookies
 			const users = await this.adminService.allUsers(jwt)
 
 			res.status(200).json(users)
