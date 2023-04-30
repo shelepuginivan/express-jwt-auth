@@ -1,7 +1,13 @@
-import { User } from './user'
+import { Role, User } from './user'
 
-export class UserDto extends User {
+export class UserDto {
+	username: string
+	email: string
+	role: Role
+
 	constructor(user: User) {
-		super(user.username, user.email, user.password, user.role)
+		this.username = user.username
+		this.email = user.email
+		this.role = user.role
 	}
 }
