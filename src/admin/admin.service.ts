@@ -7,7 +7,7 @@ import { UserDto } from '../user/user.dto'
 export class AdminService {
 	constructor(private readonly tokenService: TokenService) {}
 
-	async allUsers(token: string) {
+	async allUsers(token?: string) {
 		const payload = this.tokenService.verify(token)
 
 		if (
