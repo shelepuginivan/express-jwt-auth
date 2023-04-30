@@ -1,7 +1,7 @@
-import { UserService } from '../user/user.service'
-import { AuthService } from './auth.service'
 import { TokenService } from '../token/token.service'
+import { UserService } from '../user/user.service'
 import { AuthController } from './auth.controller'
+import { AuthService } from './auth.service'
 
 const tokenService = new TokenService()
 const userService = new UserService()
