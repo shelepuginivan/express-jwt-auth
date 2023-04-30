@@ -9,7 +9,11 @@ export class TokenService {
 		})
 	}
 
-	verify(token: string) {
+	verify(token?: string) {
+		if (!token) {
+			throw new Unauthorized('jwt required')
+		}
+
 		try {
 			return verify(token, process.env.JWT_SECRET || '')
 		} catch (error) {
