@@ -11,7 +11,7 @@ export class AdminService {
 		const payload = this.tokenService.verify(token)
 
 		if (
-			!payload.hasOwnProperty('role') ||
+			!Object.hasOwnProperty.call(payload, 'role') ||
 			(payload as Record<'role', string>).role !== 'admin'
 		) {
 			throw new Forbidden('access denied')
