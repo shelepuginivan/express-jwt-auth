@@ -1,8 +1,8 @@
-import { TokenService } from '../token/token.service'
 import { Forbidden } from '../exception/server.exception'
-import userModel from '../user/user.model'
+import { TokenService } from '../token/token.service'
 import { User } from '../user/user'
 import { UserDto } from '../user/user.dto'
+import userModel from '../user/user.model'
 
 export class AdminService {
 	constructor(private readonly tokenService: TokenService) {}
