@@ -16,4 +16,16 @@ export class AuthController {
 			next(error)
 		}
 	}
+
+	async login(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { username, email, password } = req.body
+			const { jwt, user } = await this.authService.login(username, email, password)
+
+			res.setHeader('Authorization', `Bearer ${jwt}`)
+			res.status(200).json(user)
+		} catch (error) {
+			next(error)
+		}
+	}
 }
