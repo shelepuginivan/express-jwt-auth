@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express'
+
 import { authController } from './auth.module'
 
 const authRouter = Router()
