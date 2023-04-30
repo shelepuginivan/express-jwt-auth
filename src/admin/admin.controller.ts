@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
+
 import { AdminService } from './admin.service'
 
 export class AdminController {
