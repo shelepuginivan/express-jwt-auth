@@ -1,8 +1,9 @@
+import bodyParser from 'body-parser'
 import { config } from 'dotenv'
 import express, { json } from 'express'
 import { connect } from 'mongoose'
 import { join } from 'path'
-import bodyParser from 'body-parser'
+
 import authRouter from './auth/auth.router'
 import { serverExceptionMiddleware } from './exception/server-exception.middleware'
 
