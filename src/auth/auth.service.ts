@@ -1,10 +1,11 @@
+import { compare, genSalt, hash } from 'bcrypt'
+
 import { BadRequest } from '../exception/server.exception'
 import { TokenService } from '../token/token.service'
 import { Role, User } from '../user/user'
 import { UserDto } from '../user/user.dto'
 import userModel from '../user/user.model'
 import { UserService } from '../user/user.service'
-import { genSalt, hash } from 'bcrypt'
 
 export class AuthService {
 	constructor(
@@ -38,6 +39,43 @@ export class AuthService {
 		return {
 			jwt,
 			user: new UserDto(createdUser as User)
+		}
+	}
+
+	async login(username?: string, email?: string, password?: string) {
+		if (!password) {
+			throw new BadRequest('password required')
+		}
+
+		if (!username && !email) {
+			throw new BadRequest('username or email required')
+		}
+
+		const authParams = email ? {email} : {username}
+
+		const user = await userModel.findOne(authParams)
+
+		if (!user) {
+			throw new BadRequest('user does not exist')
+		}
+
+		const passwordIsValid = await compare(password, user.password)
+
+		if (!passwordIsValid) {
+			throw new BadRequest('invalid password')
+		}
+
+		const userData = {
+			username: user.username,
+			email: user.email,
+			role: user.role
+		}
+
+		const jwt = this.tokenService.sign(userData)
+
+		return {
+			jwt,
+			user: new UserDto(userData as Omit<User, 'password'>)
 		}
 	}
 }
