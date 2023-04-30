@@ -16,13 +16,6 @@ export class AuthService {
 		const role: Role = 'user'
 		password = await hash(password, await genSalt())
 
-		const jwt = this.tokenService.sign({
-			email,
-			username,
-			password,
-			role
-		})
-
 		const newUser = {
 			username,
 			email,
@@ -35,6 +28,12 @@ export class AuthService {
 		}
 
 		const createdUser = await userModel.create(newUser)
+
+		const jwt = this.tokenService.sign({
+			email,
+			username,
+			role
+		})
 
 		return {
 			jwt,
