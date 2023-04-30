@@ -28,4 +28,8 @@ export class AuthController {
 			next(error)
 		}
 	}
+
+	logout(_req: Request, res: Response) {
+		res.clearCookie('jwt').status(200).end()
+	}
 }
