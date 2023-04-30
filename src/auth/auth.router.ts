@@ -5,7 +5,8 @@ const authRouter = Router()
 
 authRouter.post(
 	'/register',
-	(req: Request, res: Response, next: NextFunction) => authController.registerUser(req, res, next)
+	(req: Request, res: Response, next: NextFunction) =>
+		authController.registerUser(req, res, next)
 )
 
 export default authRouter
