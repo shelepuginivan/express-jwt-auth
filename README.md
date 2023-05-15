@@ -38,7 +38,7 @@ Response body includes following parameters:
 
 Also, server sets http-only cookie `jwt` with generated token.
 
-If there is an account with same `username` or `email`, server will respond with status 400. 
+If there is an account with same `username` or `email`, server responds with status 400. 
 
 *Server response example:*
 
@@ -91,7 +91,7 @@ Response body includes following parameters:
 
 Server sets http-only cookie `jwt` with generated token.
 
-If account were not created yet, server will respond with status 400.
+If account is not created yet, server responds with status 400.
 Same happens if required fields (in body) are not provided.
 
 *Server response example:*
@@ -145,7 +145,7 @@ Response body is array of users
 ]
 ```
 
-If token is not provided (user is not authenticated) or user role (which is determined by token) is not `'admin'`, server responses with status 403.
+If token is not provided (user is not authenticated) or user role (which is determined by token) is not `'admin'`, server responds with status 403.
 
 ## How to run
 
